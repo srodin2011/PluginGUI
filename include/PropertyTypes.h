@@ -12,6 +12,12 @@
 
 namespace PluginGUI
 {
+    /// <summary>
+    /// Ведение информации о свойствах контролов. Возможность поиска свойства по id.
+    /// Возможность поиска id свойства по имени. Обеспечивает возможность редактирования
+    /// свойств через проперти грид.
+    /// </summary>
+
     enum class TypeId
     {
         Bool, Color, WString, Int, Float, Frame
@@ -44,31 +50,51 @@ namespace PluginGUI
     template<> struct ToTypeId<Gdiplus::Color> { static constexpr TypeId value = TypeId::Color; };
     template<> struct ToTypeId<Frame> { static constexpr TypeId value = TypeId::Frame; };
 
-    // Реестр свойств по типу контрола
+    // Реестр свойств, привязанных к классу контрола
     template<typename ControlType>
     struct PropertyTable
     {
         static constexpr size_t MAX_PROPERTIES = 256;
-        static PropertyInfo* m_entries;
-        static size_t m_count;
+        static PropertyInfo* m_entries; // Указатель на массив свойств
+        static size_t m_count; // Количество свойств
 
+        /// <summary>
+        /// Получить доступ к совйствам. Инициализация при первом обращении
+        /// </summary>
+        /// <returns></returns>
         static PropertyInfo* entries()
         {
             static PropertyInfo storage[MAX_PROPERTIES] = {};
             return storage;
         }
+
+        /// <summary>
+        /// Счетчик свойств
+        /// </summary>
+        /// <returns></returns>
         static size_t& count()
         {
             static size_t storage = 0;
             return storage;
         }
 
+        /// <summary>
+        /// Добавить информацию о новом свойстве
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="uiName"></param>
         static void Add(Id id, TypeId type, const char* uiName)
         {
             PropertyInfo* e = entries();
             e[count()++] = PropertyInfo(id, type, uiName);
         }
 
+        /// <summary>
+        /// Найти свойство по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         static const PropertyInfo* Find(Id id)
         {
             PropertyInfo* e = entries();
@@ -78,6 +104,11 @@ namespace PluginGUI
             return nullptr;
         }
 
+        /// <summary>
+        /// Найти свойство по имени
+        /// </summary>
+        /// <param name="uiName"></param>
+        /// <returns></returns>
         static Id FindIdByName(const std::string& uiName)
         {
             PropertyInfo* e = entries();
@@ -88,7 +119,7 @@ namespace PluginGUI
         }
     };
 
-    // глобальная функция: найти свойство по Id (может быть виртуальной в Control)
+    // глобальная функция: найти свойство по Id 
     template<typename ControlType>
     const PropertyInfo* FindProperty(Id id)
     {
@@ -100,6 +131,4 @@ namespace PluginGUI
     {
         return PropertyTable<ControlType>::FindIdByName(uiName);
     }
-
-    #define PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(ControlType) 
 }
