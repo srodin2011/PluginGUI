@@ -863,7 +863,7 @@ namespace PluginGUI
 					}
 
 					Control* pPrimary = GetSingleSelectedControl();  // nullptr или один контрол
-					OnSelectionChanged(pPrimary);  // событие уведомляет MainFrame
+					//OnSelectionChanged(pPrimary);  // событие уведомляет MainFrame
 				}
 			}
 			//CWnd::Invalidate();
@@ -1672,9 +1672,10 @@ namespace PluginGUI
 	{
 		switch (static_cast<Control::PropertyName>(id))
 		{
-			case Control::PropertyName::pnSelected:
-				break;
 			case Control::PropertyName::pnBorder:
+			case Control::PropertyName::pnSelected:
+				Control* pPrimary = GetSingleSelectedControl();  // nullptr или один контрол
+				OnSelectionChanged(pPrimary);  // событие уведомляет MainFrame
 				break;
 		}
 	}
@@ -1765,7 +1766,7 @@ namespace PluginGUI
 
 		pControl->Selected = true;
 
-		OnSelectionChanged(pControl);
+		//OnSelectionChanged(pControl);
 	}
 
 	/// <summary>
@@ -1832,7 +1833,7 @@ namespace PluginGUI
 			m_selectionBoundingRect = CRect(clientTL, m_selectionBoundingRect.Size());
 		}
 
-		OnSelectionChanged(m_lastSingleSelectedControl);
+		//OnSelectionChanged(m_lastSingleSelectedControl);
 
 		return selectedCount > 0;
 	}
@@ -1881,7 +1882,7 @@ namespace PluginGUI
 		m_startSelectionBoundingRect.SetRectEmpty();
 		m_selectionContainer = nullptr;  // Сбрасываем!
 
-		OnSelectionChanged(nullptr);
+		//OnSelectionChanged(nullptr);
 
 		return deselected;
 	}
