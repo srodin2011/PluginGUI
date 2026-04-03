@@ -6,27 +6,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(ButtonControl)
-    //enum class PropertyName
-    //{
-    //    pnBaseColor = Base::PropertyName::pnLastName,
-    //    pnOn,
-    //    pnOnColor,
-    //    pnOffColor,
-    //    pnTextColor,
-    //    pnText,
-    //    pnLastName
-    //};
-
-
-    //BEGIN_DESCRIPTOR(ButtonControl, Control, true)
-    //    NAME_INFO(On, PropertyName::pnOn)
-    //    NAME_INFO(OnColor, PropertyName::pnOnColor)
-    //    NAME_INFO(OffColor, PropertyName::pnOffColor)
-    //    NAME_INFO(TextColor, PropertyName::pnTextColor)
-    //    NAME_INFO(Text, PropertyName::pnText)
-    //END_DESCRIPTOR()
-
     /// <summary>
     /// Конструктор класса
     /// </summary>

@@ -5,8 +5,6 @@
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(ButtonRadioImage)
-    
     ButtonRadioImage::ButtonRadioImage(const CPoint& p) : Control()
     {
         Border = Frame(p.x, p.y, p.x, p.y);

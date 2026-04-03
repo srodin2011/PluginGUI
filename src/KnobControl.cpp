@@ -12,8 +12,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-	PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(KnobControl)
-
 	KnobControl::KnobControl(const CRect& Border):
 		KnobControl(Border.TopLeft(), std::min(Border.Width(), Border.Height()))
 	{

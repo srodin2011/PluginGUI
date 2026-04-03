@@ -4,8 +4,6 @@
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(Panel)
-
     using namespace Gdiplus;
 
     Panel::Panel(const CRect& border) : Control(border)

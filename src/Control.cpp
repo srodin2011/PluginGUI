@@ -11,16 +11,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI 
 {
-	PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(Control)
-	//BEGIN_DESCRIPTOR_(Control, nullptr, Control, true)
-	//	NAME_INFO(BaseColor, PropertyName::pnBaseColor)
-	//	NAME_INFO(Border, PropertyName::pnBorder)
-	//	NAME_INFO(Name, PropertyName::pnName)
-	//	NAME_INFO(Focus, PropertyName::pnFocus)
-	//	NAME_INFO(ValueChangeMode, PropertyName::pnValueChangeMode)
-	//	NAME_INFO(Selected, PropertyName::pnSelected)
-	//END_DESCRIPTOR()
-
 	/// <summary>
 	/// Инициализация элемента управления
 	/// </summary>

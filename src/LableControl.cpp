@@ -6,8 +6,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(LableControl)
-
     LableControl::LableControl(const CRect& Border, const std::wstring& text) :
         Control(Border)
     {

@@ -7,8 +7,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-	PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(ScalableControl)
-
 	ScalableControl::ScalableControl(const CRect& Border) :
 		Control(Border)
 	{

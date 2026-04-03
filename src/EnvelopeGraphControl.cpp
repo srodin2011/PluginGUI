@@ -12,10 +12,6 @@
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(EnvelopeGraphControl)
-
-    //using namespace Gdiplus;
-
     EnvelopeGraphControl::EnvelopeGraphControl(const CRect& Border)
         : Control(Border)
     {

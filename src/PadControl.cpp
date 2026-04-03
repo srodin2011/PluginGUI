@@ -6,8 +6,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(PadControl)
-
     /// <summary>
     /// Конструктор класса
     /// </summary>

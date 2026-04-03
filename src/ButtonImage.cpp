@@ -5,8 +5,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(ButtonImage)
-
     ButtonImage::ButtonImage(const CRect& border) : Control(border)
     {
         Init();

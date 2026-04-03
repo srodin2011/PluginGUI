@@ -7,8 +7,6 @@ using namespace Gdiplus;
 
 namespace PluginGUI
 {
-    PLUGINGUI_PROPERTY_TABLE_INSTANTIATE(CheckBoxControl)
-
     CheckBoxControl::CheckBoxControl(const CRect& Border) :
         Control(Border),
         m_ClickAnimationProgress(0.0f)
