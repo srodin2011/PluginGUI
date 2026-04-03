@@ -137,14 +137,12 @@ namespace PluginGUI
             SolidBrush presseBrush(pressedBg);
             CreateRoundedRectPath(path, rect, ÑornerRoundRadius, CornerStyle);
             g.FillPath(&presseBrush, &path);
-            //g.FillRectangle(&presseBrush, rect);
         }
         else if (hover)
         {
             SolidBrush hoverBrush(hoverBg);
             CreateRoundedRectPath(path, rect, ÑornerRoundRadius, CornerStyle);
             g.FillPath(&hoverBrush, &path);
-            g.FillRectangle(&hoverBrush, rect);
         }
 
         if (pressed)
@@ -169,5 +167,111 @@ namespace PluginGUI
             // Îáû÷íîå èçîáðàæåíèå
             g.DrawImage(image, rect);
         }
+    }
+
+    //------------------------------------------------------------------------------
+    // Ðàáîòà ñî ñâîéñòâàìè 
+
+    Variant ButtonImage::doGetPropertyValue(Id id) const
+    {
+        switch (id)
+        {
+            case static_cast<int>(PropertyName::pnImagePath):
+                return ImagePath;
+
+            case static_cast<int>(PropertyName::pnHoverBgColor):
+                return HoverBgColor;
+
+            case static_cast<int>(PropertyName::pnPressedColor):
+                return PressedColor;
+
+            case static_cast<int>(PropertyName::pnPressed):
+                return Pressed;
+
+            case static_cast<int>(PropertyName::pnToggle):
+                return Toggle;
+
+            case static_cast<int>(PropertyName::pnCornerStyle):
+                return static_cast<int>(CornerStyle);
+
+            case static_cast<int>(PropertyName::pnÑornerRoundRadius):
+                return ÑornerRoundRadius;
+
+            default:
+                return Base::doGetPropertyValue(id);
+        }
+    }
+
+    bool ButtonImage::doSetPropertyValue(Id id, const Variant& value)
+    {
+        return std::visit(
+            [this, id](const auto& v) -> bool
+            {
+                using T = std::decay_t<decltype(v)>;
+
+                switch (id)
+                {
+                    case static_cast<int>(PropertyName::pnImagePath):
+                        if constexpr (std::is_same_v<T, std::wstring>)
+                        {
+                            ImagePath = v;
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnHoverBgColor):
+                        if constexpr (std::is_same_v<T, Gdiplus::Color>)
+                        {
+                            HoverBgColor = v;
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnPressedColor):
+                        if constexpr (std::is_same_v<T, Gdiplus::Color>)
+                        {
+                            PressedColor = v;
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnPressed):
+                        if constexpr (std::is_same_v<T, bool>)
+                        {
+                            Pressed = v;
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnToggle):
+                        if constexpr (std::is_same_v<T, bool>)
+                        {
+                            Toggle = v;
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnCornerStyle):
+                        if constexpr (std::is_same_v<T, int>)
+                        {
+                            CornerStyle = static_cast<CornerMask>(v);
+                            return true;
+                        }
+                        return false;
+
+                    case static_cast<int>(PropertyName::pnÑornerRoundRadius):
+                        if constexpr (std::is_same_v<T, int>)
+                        {
+                            ÑornerRoundRadius = v;
+                            return true;
+                        }
+                        return false;
+
+                    default:
+                        return Base::doSetPropertyValue(id, v);
+                }
+            },
+            value
+        );
     }
 }
